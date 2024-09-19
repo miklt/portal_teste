@@ -7,6 +7,54 @@ CREATE TABLE IF NOT EXISTS "activity_logs" (
 	"ip_address" varchar(45)
 );
 --> statement-breakpoint
+CREATE TABLE IF NOT EXISTS "autores" (
+	"id" serial PRIMARY KEY NOT NULL,
+	"nome" varchar(255) NOT NULL,
+	"sobrenome" varchar(255) NOT NULL,
+	"data_nascimento" date NOT NULL,
+	"data_cadastro" timestamp DEFAULT now() NOT NULL,
+	"data_alteracao" timestamp DEFAULT now() NOT NULL
+);
+--> statement-breakpoint
+CREATE TABLE IF NOT EXISTS "autores_documentos" (
+	"autor_id" integer NOT NULL,
+	"documento_id" integer NOT NULL,
+	"autor_principal" integer NOT NULL
+);
+--> statement-breakpoint
+CREATE TABLE IF NOT EXISTS "documentos" (
+	"id" serial PRIMARY KEY NOT NULL,
+	"tipo" varchar NOT NULL,
+	"titulo" varchar(255) NOT NULL,
+	"assunto" text,
+	"editora" varchar(255),
+	"serie" varchar(255),
+	"suporte" varchar(255),
+	"ano" integer,
+	"cdu" varchar(50),
+	"cdd" varchar(50),
+	"idioma" varchar(50),
+	"local" varchar(255),
+	"classificacao" varchar(255),
+	"isbn" varchar(13),
+	"issn" varchar(9),
+	"edicao" varchar(50),
+	"numero_tombo" varchar(50),
+	"codigo_barras" varchar(50),
+	"dgm" varchar(50),
+	"numero_chamada" varchar(50),
+	"resumo" text,
+	"destino_uso" varchar(255),
+	"genero" varchar(50),
+	"nivel" varchar(50),
+	"data_cadastro" timestamp DEFAULT now() NOT NULL,
+	"data_alteracao" timestamp DEFAULT now() NOT NULL,
+	"notas" jsonb,
+	"marc21" jsonb,
+	CONSTRAINT "documentos_numero_tombo_unique" UNIQUE("numero_tombo"),
+	CONSTRAINT "documentos_codigo_barras_unique" UNIQUE("codigo_barras")
+);
+--> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "invitations" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"team_id" integer NOT NULL,
@@ -59,6 +107,18 @@ END $$;
 --> statement-breakpoint
 DO $$ BEGIN
  ALTER TABLE "activity_logs" ADD CONSTRAINT "activity_logs_user_id_users_id_fk" FOREIGN KEY ("user_id") REFERENCES "public"."users"("id") ON DELETE no action ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+--> statement-breakpoint
+DO $$ BEGIN
+ ALTER TABLE "autores_documentos" ADD CONSTRAINT "autores_documentos_autor_id_autores_id_fk" FOREIGN KEY ("autor_id") REFERENCES "public"."autores"("id") ON DELETE no action ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+--> statement-breakpoint
+DO $$ BEGIN
+ ALTER TABLE "autores_documentos" ADD CONSTRAINT "autores_documentos_documento_id_documentos_id_fk" FOREIGN KEY ("documento_id") REFERENCES "public"."documentos"("id") ON DELETE no action ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;

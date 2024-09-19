@@ -1,0 +1,67 @@
+Pesquisa Avançada v Todos os campos:
+Título
+Autor:
+Assunto:
+Editora
+Série
+Idioma:
+Notas
+Local
+Classificação
+ISBN
+ISSN
+Edição
+Número Tombo:
+Código de barras:
+DGM:
+Número de chamada:
+Resumo:
+Destino/uso:
+Gênero
+Nível
+]
+
+
+
+Todos
+
+Livro
+
+Periódico
+
+Artigo(s)
+
+Artigo periódico
+
+AudioVisual
+
+Currículo
+
+v Livro indígena
+
+1h26  1h31
+let's continue with our ILS. Please create the table documents. It will an abstraction of 'Livros'. Po agora só cria ele com estes atributos:
+Título
+Autor:
+Assunto:
+Editora
+Série
+Idioma:
+Notas
+Local
+Classificação
+ISBN
+ISSN
+Edição
+Número Tombo:
+Código de barras:
+DGM:
+Número de chamada:
+Resumo:
+Destino/uso:
+Gênero
+Nível
+
+Vamos criar um sistema integrado de bibliotecas de livros didáticos. É um sistema web. De tecnologias vamos usar next.js e apis dentro do nextjs. O banco de dados será postgresql e usaremos o drizzle como orm.
+Vamos começar pelo banco de dados. 
+Usando o drizzle, crie um schema para os Autores. Inclua os campos id, nome, sobrenome, data de nascimento, data de cadastro e data de alteração. , Editora, Biblioteca

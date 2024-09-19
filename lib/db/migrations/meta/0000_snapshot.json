@@ -1,5 +1,5 @@
 {
-  "id": "261fd993-fb2c-43e7-89d6-cd58786c5f58",
+  "id": "d70aaaf3-49f0-48d3-a099-a3536974c172",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -77,6 +77,304 @@
       },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
+    },
+    "public.autores": {
+      "name": "autores",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "nome": {
+          "name": "nome",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "sobrenome": {
+          "name": "sobrenome",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "data_nascimento": {
+          "name": "data_nascimento",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "data_cadastro": {
+          "name": "data_cadastro",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "data_alteracao": {
+          "name": "data_alteracao",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.autores_documentos": {
+      "name": "autores_documentos",
+      "schema": "",
+      "columns": {
+        "autor_id": {
+          "name": "autor_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "documento_id": {
+          "name": "documento_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "autor_principal": {
+          "name": "autor_principal",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "autores_documentos_autor_id_autores_id_fk": {
+          "name": "autores_documentos_autor_id_autores_id_fk",
+          "tableFrom": "autores_documentos",
+          "tableTo": "autores",
+          "columnsFrom": [
+            "autor_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "autores_documentos_documento_id_documentos_id_fk": {
+          "name": "autores_documentos_documento_id_documentos_id_fk",
+          "tableFrom": "autores_documentos",
+          "tableTo": "documentos",
+          "columnsFrom": [
+            "documento_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.documentos": {
+      "name": "documentos",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "tipo": {
+          "name": "tipo",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "titulo": {
+          "name": "titulo",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "assunto": {
+          "name": "assunto",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "editora": {
+          "name": "editora",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "serie": {
+          "name": "serie",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "suporte": {
+          "name": "suporte",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "ano": {
+          "name": "ano",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "cdu": {
+          "name": "cdu",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "cdd": {
+          "name": "cdd",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "idioma": {
+          "name": "idioma",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "local": {
+          "name": "local",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "classificacao": {
+          "name": "classificacao",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "isbn": {
+          "name": "isbn",
+          "type": "varchar(13)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "issn": {
+          "name": "issn",
+          "type": "varchar(9)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "edicao": {
+          "name": "edicao",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "numero_tombo": {
+          "name": "numero_tombo",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "codigo_barras": {
+          "name": "codigo_barras",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "dgm": {
+          "name": "dgm",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "numero_chamada": {
+          "name": "numero_chamada",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "resumo": {
+          "name": "resumo",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "destino_uso": {
+          "name": "destino_uso",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "genero": {
+          "name": "genero",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "nivel": {
+          "name": "nivel",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "data_cadastro": {
+          "name": "data_cadastro",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "data_alteracao": {
+          "name": "data_alteracao",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "notas": {
+          "name": "notas",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "marc21": {
+          "name": "marc21",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "documentos_numero_tombo_unique": {
+          "name": "documentos_numero_tombo_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "numero_tombo"
+          ]
+        },
+        "documentos_codigo_barras_unique": {
+          "name": "documentos_codigo_barras_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "codigo_barras"
+          ]
+        }
+      }
     },
     "public.invitations": {
       "name": "invitations",
